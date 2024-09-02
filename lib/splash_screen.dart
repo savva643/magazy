@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:magazy/home_screen.dart';
 import 'package:magazy/login_screen.dart';
@@ -18,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if(tk != "0"){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
     }else{
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
     }
   }
 
@@ -40,15 +41,18 @@ class _SplashScreenState extends State<SplashScreen> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color.fromARGB(255, 117, 63, 139),
-            Color.fromARGB(255, 250, 184, 142),
+            Color.fromARGB(255, 159, 232, 112),
+            Color.fromARGB(255, 159, 232, 112),
           ],
         ),
       ),
       child:  Scaffold(
         //Make sure you make the scaffold background transparent
         backgroundColor: Colors.transparent,
-        body: Center(child: Image.asset('assets/images/logo.png',)),
+        body: Center(child: Container(padding: EdgeInsets.only(left: 100, right: 100), child: SvgPicture.asset(
+          'assets/images/logo.svg',
+          width: size.width,
+        )),),
       ),
     );
   }
