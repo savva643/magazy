@@ -157,6 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textAlign: TextAlign.center,
                           'log_in'.tr().toString(),
                           style: const TextStyle(
+                            letterSpacing: -1,
                             fontSize: 14,
                             color: Color.fromARGB(255, 22, 51, 0),
                             fontFamily: 'Montserrat',

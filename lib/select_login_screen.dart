@@ -73,7 +73,8 @@ class _SelectLoginScreenState extends State<SelectLoginScreen> {
               textAlign: TextAlign.center,
               'log_in'.tr().toString(),
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: 14,
+                letterSpacing: -1,
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w700,
                 color: Color(0xff163300)
@@ -98,7 +99,8 @@ class _SelectLoginScreenState extends State<SelectLoginScreen> {
                 textAlign: TextAlign.center,
                 "Войти через сервисы",
                 style: const TextStyle(
-                  fontSize: 12,
+                    letterSpacing: -1,
+                  fontSize: 14,
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w700,
                     color: Color(0xff163300)
@@ -124,6 +126,7 @@ class _SelectLoginScreenState extends State<SelectLoginScreen> {
               textAlign: TextAlign.center,
               'loginapple'.tr().toString(),
               style: const TextStyle(
+                letterSpacing: -1,
                 fontSize: 16,
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w600,

@@ -118,38 +118,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color.fromARGB(255, 255,255,255),
-                  Color.fromARGB(255, 255,255,255)
+                  Color(0xffF5F6F7),
+                  Color(0xffF5F6F7)
                 ],
               )),
           child:
-        ListView(
+          Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
-            SizedBox(
-              height: size.height * 0.2,
-              child: Column(
+            Column(
                 children: [
                   /// header action icons
                   Container(
-                    padding: const EdgeInsets.fromLTRB(18, 20, 18, 0),
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40)),color: Colors.white),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-
-                        Row(
-                          children: const [
-                            Image(image: AssetImage('assets/images/logocolor.png'),width: 100),
-                          ],
-                        ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Фонвизинская 18',
+                    '54-ая Улица, 12>',
                     textAlign: TextAlign.left,
+                    
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.w600,
                         fontFamily: 'Montserrat'
                     ),
@@ -158,8 +153,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: Colors.black38,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
                         fontFamily: 'Montserrat',
 
                     ),
@@ -183,42 +178,42 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+
+                  SizedBox(height: 12,),
                   Container(
-                    margin: const EdgeInsets.fromLTRB(18, 20, 18, 0),
-                    padding: const EdgeInsets.only(left: 15, right: 15),
-                    height: 44,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Colors.white),
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    height: 70,
                     width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 244, 244, 246),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextFormField(
-                      controller: _searchLanguageController,
-                      onChanged: _loadSearchedLanguages,
-                      cursorColor: Colors.grey,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        icon: Icon(Icons.search, color: Colors.grey.shade400,),
-                        hintText: 'search'.tr().toString(),
-                        hintStyle: TextStyle(color: Colors.grey.shade400, fontWeight: FontWeight.bold),
-                        suffixIcon: _searchLanguageController.text.isNotEmpty ? IconButton(icon: const Icon(Icons.clear), onPressed: _clearSearch,) : null,
+                    child: Row( children: [Container(padding: EdgeInsets.all(4), height: 50, width: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Color(0xffF5F6F7)), child: Icon(Icons.search, color: Colors.grey.shade400,),),
+                    SizedBox(width: 10,),Expanded(child: Container(alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 16, top: 2), height: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Color(0xffF5F6F7)), child: Text(
+                      'search'.tr().toString(),
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Colors.black38,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Montserrat',
+
                       ),
-                    ),
+                    )))
+                    ],)
+
                   ),
 
                 ],
               ),
-            ),
+            SizedBox(height: 12,),
             Expanded(
                 child:  Container(
-                  height: size.height-250,
-                  margin: const EdgeInsets.fromLTRB(18, 10, 18, 0),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Colors.white),
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: _loadGridView(),
                 )
             ),
             Container(
-              height: 100,
-              width: 150,
+              height: 110,
+              width: size.width,
               decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -441,18 +436,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _loadGridView() {
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         mainAxisExtent: 170.0,
         crossAxisSpacing: 20,
         mainAxisSpacing: 10,
       ),
       children: List.generate(_searchedLangData.length, (idx) {
         return Material(
-          borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(255, 244, 244, 246),
+          borderRadius: BorderRadius.circular(20),
+          color: Color(0xffF5F6F7),
           child: InkWell(
             splashColor: Colors.redAccent,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
             onTap: () async {
               Navigator.push(context, MaterialPageRoute(builder: (context) =>  TovarScreen(vths:_langData[idx]['id'].toString(), sdzsdz: _langData[idx]['name'].toString(),)));
             },
@@ -468,12 +463,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 12,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
             ),
+            Expanded(child: Container()),
             Container(
               alignment: Alignment.bottomCenter,
               child:SizedBox(
@@ -484,6 +480,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
             ),
+                Expanded(child: Container()),
               ],
             ),
           ),
