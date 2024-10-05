@@ -114,7 +114,7 @@ class _TovarScreenState extends State<TovarScreen> {
                 color: Colors.black,
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                fontFamily: 'Gilroy'
+                fontFamily: 'Montserrat'
             ),
           ),
                         SizedBox(
@@ -250,7 +250,7 @@ class _TovarScreenState extends State<TovarScreen> {
                                     color: Colors.black,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
-                                    fontFamily: 'Gilroy'
+                                    fontFamily: 'Montserrat'
                                 ),),
                                 Text('Item 2'),
                                 Text('Item 3'),
@@ -275,7 +275,7 @@ class _TovarScreenState extends State<TovarScreen> {
                                 color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                fontFamily: 'Gilroy'
+                                fontFamily: 'Montserrat'
                             ),),
                         ),
                     ),

@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Gilroy'
+                        fontFamily: 'Montserrat'
                     ),
                   ),Text(
                     'Доставка 15 минут',
@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black38,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Gilroy',
+                        fontFamily: 'Montserrat',
 
                     ),
                   ),
@@ -272,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               color: Colors.black,
                                               fontSize: 32,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Gilroy'
+                                              fontFamily: 'Montserrat'
                                           ),),
                                       ],
                                     ),
@@ -293,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
-                                  fontFamily: 'Gilroy'
+                                  fontFamily: 'Montserrat'
                               ),
                           ),
                         ),
@@ -303,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
-                                  fontFamily: 'Gilroy'
+                                  fontFamily: 'Montserrat'
                               ),),
                         ),
                         ],),),
@@ -316,14 +316,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
-                            fontFamily: 'Gilroy'
+                            fontFamily: 'Montserrat'
                         ),),
                         Text("Корзина",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
-                              fontFamily: 'Gilroy'
+                              fontFamily: 'Montserrat'
                           ),),
                         ],),),
                             Container(

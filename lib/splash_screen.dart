@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:magazy/select_login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:magazy/home_screen.dart';
 import 'package:magazy/login_screen.dart';
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if(tk != "0"){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
     }else{
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const SelectLoginScreen(),));
     }
   }
 

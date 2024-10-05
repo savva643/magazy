@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:magazy/home_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -19,7 +20,7 @@ class LoginScreen extends StatefulWidget {
 
 }
 
-const kColorBg = Color(0xffffffff);
+const kColorBg = Color.fromARGB(255,19, 21, 18);
 class _LoginScreenState extends State<LoginScreen> {
 
 
@@ -28,255 +29,214 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.zero,
         child: AppBar(
-        backgroundColor: kColorBg,
-        elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: kColorBg,
-        statusBarBrightness: Brightness.light, // For iOS: (dark icons)
-        statusBarIconBrightness: Brightness.dark, // For Android: (dark icons)
-    ),
-    ),
-    ),
-    backgroundColor: kColorBg,
-    body: SafeArea(
-    child: Padding(
-    padding: const EdgeInsets.fromLTRB(18, 20, 18, 0),
-    child: Column(
-    children: [
-      Positioned(
-        child: Container(
-          margin: EdgeInsets.only(top: size.height * 0.01),
-          alignment: Alignment.center,
+          backgroundColor: kColorBg,
+          elevation: 0,
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: kColorBg,
+            statusBarBrightness: Brightness.light, // For iOS: (dark icons)
+            statusBarIconBrightness: Brightness.dark, // For Android: (dark icons)
+          ),
+        ),
+      ),
+      backgroundColor: kColorBg,
+      body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  child: Image.asset('assets/images/logo.png', width: 50),
-                ),
-      Container(
-        child:
-                Text(
-                  'VoyFy',
-                  style: TextStyle(
-                    letterSpacing: 2,
-                    fontSize: 34,
-                    fontFamily: 'Gilroy',
-                    fontWeight: FontWeight.w900,
-                    color: Color(0xff000000),
+            padding: const EdgeInsets.fromLTRB(18, 20, 18, 0),
+            child: Column(
+                children: [
+                  Positioned(
+                    child: Container(
+                      margin: EdgeInsets.only(top: size.height * 0.01),
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 50,
+                              height: 50,
+                              child: MaterialButton( shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(60))), color: Color(0xff363835), onPressed: () {Navigator.pop(context);},  child: Icon(Icons.arrow_back_rounded, color: Color.fromARGB(255, 159, 232, 112),)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-        margin: EdgeInsets.only(left: 6),
-      ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 30,),
-        child: Text(
-          'loginvoufy'.tr().toString(),
-          style: TextStyle(
-            letterSpacing: 2,
-            fontSize: 34,
-            fontFamily: 'Gilroy',
-            fontWeight: FontWeight.w700,
-            color: Color(0xff000000),
-          ),
-        ),
-      ),
-      Container(
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              child: Text(
-                'via'.tr().toString(),
-                style: TextStyle(
-                  letterSpacing: 2,
-                  fontSize: 20,
-                  fontFamily: 'Gilroy',
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 10,),
-              child: GradientText(
-                'Keep Pixel',
-                style: TextStyle(
-                  letterSpacing: 2,
-                  fontSize: 20,
-                  fontFamily: 'Gilroy',
-                  fontWeight: FontWeight.w700,
-                ),
-                colors: [Color(0xff0038FF), Color(0xff829CFB)],
-              ),
-            ),
-          ],
-       ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 20,),
-        padding: const EdgeInsets.only(left: 15, right: 15),
-        height: 44,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: TextFormField(
-          controller: _searchServerController,
-          onChanged: _checkem,
-          cursorColor: Colors.grey,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: 'login'.tr().toString(),
-            hintStyle: TextStyle(color: Colors.grey.shade400, fontFamily: 'Gilroy', fontWeight: FontWeight.w300,),
-          ),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 16,),
-        padding: const EdgeInsets.only(left: 15, right: 15),
-        height: 44,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: TextFormField(
-          controller: _searchServerControllerpass,
-          onChanged: _checpass,
-          obscureText: passwvisible,
-          textInputAction: TextInputAction.done,
-          cursorColor: Colors.grey,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: 'password'.tr().toString(),
-            hintStyle: TextStyle(color: Colors.grey.shade400, fontFamily: 'Gilroy', fontWeight: FontWeight.w300,),
-            suffixIcon: IconButton(
-              icon: Icon(
-                // Based on passwordVisible state choose the icon
-                passwvisible
-                    ? Icons.visibility
-                    : Icons.visibility_off,
-                color: Theme.of(context).primaryColorDark,
-              ),
-              onPressed: () {
-                // Update the state i.e. toogle the state of passwordVisible variable
-                setState(() {
-                  passwvisible = !passwvisible;
-                });
-              },
-            ),
-          ),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 20),
-        height: 48,
-        child: Material(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          child: ListTile(
-            onTap: () async {
-              if(email == true && passw == true) {
-                postRequest();
-              }else if(email == false){
-                ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-                  content: Text("enterlog".tr().toString()),
-                ));
-              }else if(passw == false){
-                ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-                  content: Text("enterpass".tr().toString()),
-                ));
-              }
-            },
-            subtitle: new Text(""),
-            title: Text(
-                textAlign: TextAlign.center,
-              'log_in'.tr().toString(),
-              style: const TextStyle(
-                fontSize: 18,
-                fontFamily: 'Gilroy',
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 20,),
-        child: Text(
-          'or'.tr().toString(),
-          style: TextStyle(
-            letterSpacing: 2,
-            fontSize: 18,
-            fontFamily: 'Gilroy',
-            fontWeight: FontWeight.w300,
-            color: Color(0xff000000),
-          ),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 22),
-        height: 48,
-        child: Material(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          child: ListTile(
-            onTap: () async {
+                  Container(
+                    alignment: Alignment.topLeft,
+                    margin: const EdgeInsets.only(top: 20,),
+                    child: Text(
+                      'phone_number'.tr().toString(),
+                      style: TextStyle(
+                        letterSpacing: 2,
+                        fontSize: 18,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xffffffff),
+                      ),
+                    ),
+                  ),
 
-            },
-            subtitle: new Text(""),
-            title: Text(
-              textAlign: TextAlign.center,
-                Platform.isIOS ? 'loginapple'.tr().toString() : 'logingoogle'.tr().toString(),
-              style: const TextStyle(
-                fontSize: 18,
-                fontFamily: 'Gilroy',
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 16),
-        height: 48,
-        child: Material(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          child: ListTile(
-            onTap: () async {
+                  Container(
+                    margin: const EdgeInsets.only(top: 14,),
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: kColorBg,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Color.fromARGB(255, 137, 138, 136))
+                    ),
+                    child: TextFormField(
+                      controller: _searchServerController,
+                      onChanged: _checkem,
+                      style: TextStyle(color: Colors.white, fontFamily: 'Montserrat', fontWeight: FontWeight.w400,),
+                      cursorColor: Colors.grey,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelStyle: TextStyle(color: Colors.white, fontFamily: 'Montserrat', fontWeight: FontWeight.w400,),
+                        hintText: 'login'.tr().toString(),
+                        hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Montserrat', fontWeight: FontWeight.w400,),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 16,),
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: kColorBg,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Color.fromARGB(255, 137, 138, 136))
+                    ),
+                    child: TextFormField(
+                      controller: _searchServerControllerpass,
+                      onChanged: _checpass,
+                      obscureText: passwvisible,
+                      style:  TextStyle(color: Colors.white, fontFamily: 'Montserrat', fontWeight: FontWeight.w400,),
+                      textInputAction: TextInputAction.done,
+                      cursorColor: Colors.grey,
+                      decoration: InputDecoration(
+                        labelStyle: TextStyle(color: Colors.white, fontFamily: 'Montserrat', fontWeight: FontWeight.w400,),
+                        border: InputBorder.none,
+                        hintText: 'password'.tr().toString(),
+                        hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Montserrat', fontWeight: FontWeight.w400,),
 
-            },
-            subtitle: new Text(""),
-            title: Text(
-              textAlign: TextAlign.center,
-              'loginservice'.tr().toString(),
-              style: const TextStyle(
-                fontSize: 18,
-                fontFamily: 'Gilroy',
-                fontWeight: FontWeight.w600,
-              ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    height: 50,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                    child: Material(
+                      color: Color.fromARGB(255, 159, 232, 112),
+                      borderRadius: BorderRadius.circular(25),
+                      child: ListTile(
+                        onTap: () async {
+                          if(email == true && passw == true) {
+                            postRequest();
+                          }else if(email == false){
+                            ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                              content: Text("enterlog".tr().toString()),
+                            ));
+                          }else if(passw == false){
+                            ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                              content: Text("enterpass".tr().toString()),
+                            ));
+                          }
+                        },
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25) ),
+                        subtitle: Text(""),
+                        title: Text(
+                          textAlign: TextAlign.center,
+                          'log_in'.tr().toString(),
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Color.fromARGB(255, 22, 51, 0),
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Expanded(child: Container()),
+                  Container(padding: EdgeInsets.only(left: 18, right: 18, bottom: 4),child: CheckboxListTile( checkboxShape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),  activeColor: Color.fromARGB(255, 159, 232, 112), visualDensity: VisualDensity.compact, // Делает checkbox более плотным
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, value: isChecked, controlAffinity: ListTileControlAffinity.leading, shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))), onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                    title: Text(
+                    textAlign: TextAlign.start,
+                    "Получать предложения с акциями с скидками",
+                    style: const TextStyle(
+                      fontSize: 10,
+                      color: Color(0xffB3B3B3),
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),),),
+                  Container(padding: EdgeInsets.only(left: 40, right: 40, bottom: 12), child: Row(children: [RoundCheckBox(
+                    onTap: (selected) {
+                      setState(() {
+                        isChecked = selected!;
+                      });
+                    },
+                    size: 24,
+                    border: Border.all(width: 0),
+                    uncheckedWidget: Checkbox( value: isChecked, shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))), activeColor: Color.fromARGB(255, 159, 232, 112),  onChanged: (bool? value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    }),
+                    checkedWidget: Checkbox( value: isChecked, shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))), activeColor: Color.fromARGB(255, 159, 232, 112),  onChanged: (bool? value) {
+                      setState(() {
+                      isChecked = value!;
+                      });
+                      }),
+                    animationDuration: Duration(milliseconds: 400),
+                    isChecked: isChecked,
+                    uncheckedColor: Colors.grey,
+                    checkedColor: Color.fromARGB(255, 159, 232, 112),
+                  ), SizedBox(width: 10,),
+                    Text(
+                      textAlign: TextAlign.start,
+                      "Делится данными с партнёрами Магазинчика",
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Color(0xffB3B3B3),
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                  ],),),
+
+                  Container(padding: EdgeInsets.only(left: 40, right: 40, bottom: 20), child: Text(
+                    textAlign: TextAlign.start,
+                    "При продолжении авторизации вы подтверждаете своё согласие с политикой конфиденциальности, условиями сервиса и условиями продажи товаров.",
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Color(0xffB3B3B3),
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),)
+                ]
             ),
-          ),
-        ),
+          )
       ),
-    ]
-    ),
-    )
-    ),
     );
   }
+  bool isChecked = false;
+
   @override
   void dispose() {
     _searchServerController.dispose();
@@ -294,28 +254,30 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => email = false);
     }
   }
-  Future<void> postRequest () async {
-    var urli = Uri.parse("https://kompot.site/anlog?login="+_searchServerController.text.toString()+"&password="+_searchServerControllerpass.text.toString());
+  Future<http.Response> postRequest () async {
+    var urli = Uri.parse("http://kompot.site/anlog?login="+ _searchServerController.text.toString()+"&password="+_searchServerControllerpass.text.toString());
 
-      var response = await http.get(urli);
-      String dff = response.body.toString();
 
-      setState(() async {
-        dynamic _langData = jsonDecode(dff);
-        print(_langData);
-        if(_langData['status'] == "true"){
-          print("gkjhjk"+_langData['token']);
+    var response = await http.post(urli,
+      headers: {"Content-Type": "application/json; charset=UTF-8"},
+      body: jsonEncode(<String, String>{
+        'login': _searchServerController.text.toString(),
+        'password': _searchServerControllerpass.text.toString(),
+      }),
+    );
+    String dff = response.body.toString();
+    if((jsonDecode(dff))["status"] =="true"){
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', (_langData)["token"]);
+      await prefs.setString('token', (jsonDecode(dff))["token"]);
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
     }else{
       ScaffoldMessenger.of(context).showSnackBar( SnackBar(
         content: Text("wrongpass".tr().toString()),
       ));
     }
-      });
-  }
 
+    return response;
+  }
 
   _checpass(String? textVal) {
     if (textVal != null && textVal.isNotEmpty) {

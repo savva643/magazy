@@ -104,7 +104,7 @@ class _AccountScreenState extends State<AccountScreen> {
           style: TextStyle(
             letterSpacing: 2,
             fontSize: 24,
-            fontFamily: 'Gilroy',
+            fontFamily: 'Montserrat',
             fontWeight: FontWeight.w700,
             color: Colors.black,
           ),
@@ -338,7 +338,7 @@ class _AccountScreenState extends State<AccountScreen> {
               'logout'.tr().toString(),
               style: const TextStyle(
                 fontSize: 18,
-                fontFamily: 'Gilroy',
+                fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w600,
                 color: Colors.red,
               ),

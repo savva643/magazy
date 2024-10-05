@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Gilroy'
+                        fontFamily: 'Montserrat'
                     ),
                   ),Text(
                     'Доставка 15 минут',
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black38,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'Gilroy',
+                        fontFamily: 'Montserrat',
 
                     ),
                   ),

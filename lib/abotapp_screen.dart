@@ -76,7 +76,7 @@ class _AboutappScreenState extends State<AboutappScreen> {
                         letterSpacing: 2,
                         fontSize: 26,
 
-                        fontFamily: 'Gilroy',
+                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w500,
 
                 ),
@@ -90,7 +90,7 @@ class _AboutappScreenState extends State<AboutappScreen> {
           style: TextStyle(
             letterSpacing: 2,
             fontSize: 20,
-            fontFamily: 'Gilroy',
+            fontFamily: 'Montserrat',
             fontWeight: FontWeight.w900,
             color: Color(0xff000000),
           ),
