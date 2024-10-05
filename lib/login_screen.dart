@@ -168,23 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
 
                   Expanded(child: Container()),
-                  Container(padding: EdgeInsets.only(left: 18, right: 18, bottom: 4),child: CheckboxListTile( checkboxShape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),  activeColor: Color.fromARGB(255, 159, 232, 112), visualDensity: VisualDensity.compact, // Делает checkbox более плотным
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, value: isChecked, controlAffinity: ListTileControlAffinity.leading, shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))), onChanged: (bool? value) {
-                    setState(() {
-                      isChecked = value!;
-                    });
-                  },
-                    title: Text(
-                    textAlign: TextAlign.start,
-                    "Получать предложения с акциями с скидками",
-                    style: const TextStyle(
-                      fontSize: 10,
-                      color: Color(0xffB3B3B3),
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),),),
-                  Container(padding: EdgeInsets.only(left: 40, right: 40, bottom: 12), child: Row(children: [RoundCheckBox(
+                  Container(padding: EdgeInsets.only(left: 40, right: 40, bottom: 10), child: Row(children: [RoundCheckBox(
                     onTap: (selected) {
                       setState(() {
                         isChecked = selected!;
@@ -199,11 +183,45 @@ class _LoginScreenState extends State<LoginScreen> {
                     }),
                     checkedWidget: Checkbox( value: isChecked, shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))), activeColor: Color.fromARGB(255, 159, 232, 112),  onChanged: (bool? value) {
                       setState(() {
-                      isChecked = value!;
+                        isChecked = value!;
+                      });
+                    }),
+                    animationDuration: Duration(milliseconds: 400),
+                    isChecked: isChecked,
+                    uncheckedColor: Colors.grey,
+                    checkedColor: Color.fromARGB(255, 159, 232, 112),
+                  ), SizedBox(width: 10,),
+                    Text(
+                      textAlign: TextAlign.start,
+                      "Получать предложения с акциями с скидками",
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Color(0xffB3B3B3),
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                  ],),),
+                  Container(padding: EdgeInsets.only(left: 40, right: 40, bottom: 12), child: Row(children: [RoundCheckBox(
+                    onTap: (selected) {
+                      setState(() {
+                        isChecked2 = selected!;
+                      });
+                    },
+                    size: 24,
+                    border: Border.all(width: 0),
+                    uncheckedWidget: Checkbox( value: isChecked2, shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))), activeColor: Color.fromARGB(255, 159, 232, 112),  onChanged: (bool? value) {
+                      setState(() {
+                        isChecked2 = value!;
+                      });
+                    }),
+                    checkedWidget: Checkbox( value: isChecked2, shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))), activeColor: Color.fromARGB(255, 159, 232, 112),  onChanged: (bool? value) {
+                      setState(() {
+                        isChecked2 = value!;
                       });
                       }),
                     animationDuration: Duration(milliseconds: 400),
-                    isChecked: isChecked,
+                    isChecked: isChecked2,
                     uncheckedColor: Colors.grey,
                     checkedColor: Color.fromARGB(255, 159, 232, 112),
                   ), SizedBox(width: 10,),
@@ -226,7 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 12,
                       color: Color(0xffB3B3B3),
                       fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),)
                 ]
@@ -236,7 +254,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
   bool isChecked = false;
-
+  bool isChecked2 = false;
   @override
   void dispose() {
     _searchServerController.dispose();
