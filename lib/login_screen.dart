@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 14,
                             color: Color.fromARGB(255, 22, 51, 0),
                             fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),

@@ -206,11 +206,42 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 12,),
             Expanded(
                 child:  Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Colors.white),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),color: Colors.white),
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: _loadGridView(),
                 )
             ),
+      Container(
+        decoration: BoxDecoration(color: Colors.white),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+        child:
+        Container(  margin: const EdgeInsets.only(top: 20),
+          height: 50,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(25)),
+          child: Material(
+            color: Color.fromARGB(255, 159, 232, 112),
+            borderRadius: BorderRadius.circular(25),
+            child: ListTile(
+              onTap: () async {
+
+              },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25) ),
+              subtitle: Text(""),
+              title: Text(
+                textAlign: TextAlign.center,
+                "Корзина",
+                style: const TextStyle(
+                  letterSpacing: -1,
+                  fontSize: 14,
+                  color: Color.fromARGB(255, 22, 51, 0),
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ),
+        )
+      ),
             Container(
               height: 110,
               width: size.width,
