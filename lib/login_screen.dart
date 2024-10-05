@@ -294,30 +294,28 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => email = false);
     }
   }
-  Future<http.Response> postRequest () async {
-    var urli = Uri.parse("https://kompot.site/anlog?login="+ _searchServerController.text.toString()+"&password="+_searchServerControllerpass.text.toString());
+  Future<void> postRequest () async {
+    var urli = Uri.parse("https://kompot.site/anlog?login="+_searchServerController.text.toString()+"&password="+_searchServerControllerpass.text.toString());
 
+      var response = await http.get(urli);
+      String dff = response.body.toString();
 
-    var response = await http.post(urli,
-        headers: {"Content-Type": "application/json; charset=UTF-8"},
-        body: jsonEncode(<String, String>{
-          'login': _searchServerController.text.toString(),
-          'password': _searchServerControllerpass.text.toString(),
-        }),
-    );
-    String dff = response.body.toString();
-    if((jsonDecode(dff))["status"] =="true"){
+      setState(() async {
+        dynamic _langData = jsonDecode(dff);
+        print(_langData);
+        if(_langData['status'] == "true"){
+          print("gkjhjk"+_langData['token']);
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', (jsonDecode(dff))["token"]);
+      await prefs.setString('token', (_langData)["token"]);
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
     }else{
       ScaffoldMessenger.of(context).showSnackBar( SnackBar(
         content: Text("wrongpass".tr().toString()),
       ));
     }
-
-    return response;
+      });
   }
+
 
   _checpass(String? textVal) {
     if (textVal != null && textVal.isNotEmpty) {

@@ -8,7 +8,6 @@ import 'package:magazy/abotapp_screen.dart';
 import 'package:magazy/login_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AccountScreen extends StatefulWidget {
