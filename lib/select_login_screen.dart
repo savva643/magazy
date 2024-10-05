@@ -73,9 +73,9 @@ class _SelectLoginScreenState extends State<SelectLoginScreen> {
               textAlign: TextAlign.center,
               'log_in'.tr().toString(),
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w700,
                 color: Color(0xff163300)
               ),
             ),
@@ -96,11 +96,11 @@ class _SelectLoginScreenState extends State<SelectLoginScreen> {
               subtitle: new Text(""),
               title: Text(
                 textAlign: TextAlign.center,
-                "Регистрация",
+                "Войти через сервисы",
                 style: const TextStyle(
-                  fontSize: 14,
+                  fontSize: 12,
                   fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w700,
                     color: Color(0xff163300)
                 ),
               ),
@@ -120,7 +120,7 @@ class _SelectLoginScreenState extends State<SelectLoginScreen> {
 
             },
             subtitle: new Text(""),
-            title: Text(
+            title: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [Icon(Icons.apple), Text(
               textAlign: TextAlign.center,
               'loginapple'.tr().toString(),
               style: const TextStyle(
@@ -128,7 +128,7 @@ class _SelectLoginScreenState extends State<SelectLoginScreen> {
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w600,
               ),
-            ),
+            )],) ,
           ),
         ),
       ),
