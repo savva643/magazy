@@ -11,6 +11,7 @@ import 'package:magazy/change_language.dart';
 import 'package:magazy/account_sccreen.dart';
 import 'package:magazy/abotapp_screen.dart';
 import 'package:magazy/map.dart';
+import 'package:magazy/serch_screen.dart';
 import 'package:magazy/tovar_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -185,18 +186,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                     height: 70,
                     width: double.infinity,
-                    child: Row( children: [Container(padding: EdgeInsets.all(4), height: 50, width: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Color(0xffF5F6F7)), child: Icon(Icons.search, color: Colors.grey.shade400,),),
-                    SizedBox(width: 10,),Expanded(child: Container(alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 16, top: 2), height: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Color(0xffF5F6F7)), child: Text(
-                      'search'.tr().toString(),
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.black38,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Montserrat',
+                    child: Row( children: [Container( height: 50, width: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Color(0xffF5F6F7)), child: IconButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen()));}, padding: EdgeInsets.all(0),  icon:  Icon(Icons.search, color: Colors.black38,)),),
+                    SizedBox(width: 10,),Expanded(child: Container(alignment: Alignment.centerLeft,  height: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Color(0xffF5F6F7)), child: Material(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(40))), color: Color(0xffF5F6F7), child:ListTile(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(40))),
+                        onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen()));},
+                        title: Text(
+                        'search'.tr().toString(),
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.black38,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Montserrat',
 
-                      ),
-                    )))
+                        ),
+                      ),)) ))
                     ],)
 
                   ),
@@ -213,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
       Container(
         decoration: BoxDecoration(color: Colors.white),
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
         child:
         Container(  margin: const EdgeInsets.only(top: 20),
           height: 50,
@@ -242,196 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         )
       ),
-            Container(
-              height: 110,
-              width: size.width,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 6,
-                      offset: Offset(0, -3),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
-                  gradient: new LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color.fromARGB(255, 255,255,255),
-                      Color.fromARGB(255, 255,255,255)
-                    ],
-                  )
-              ),
-              child: ListView(
-                children: [
-                  MaterialButton(onPressed: () {
-                    showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(25.0),
-                      ),
-                    ),
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: MediaQuery.of(context).size.height * 0.45,
-                        child: Column(
-                          children: <Widget>[
-                            Stack(
-                              children: [
-                                Container(
-                                  height: 70.0, // Adjust height to match the image height
-                                  padding: EdgeInsets.all(16.0),
-                                  child: SafeArea(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        IconButton(
-                                          icon: Icon(Icons.close, color: Colors.black),
-                                          onPressed: () => Navigator.of(context).pop(),
-                                        ),
-                                        Text("Доставка",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 32,
-                                              fontWeight: FontWeight.w600,
-                                              fontFamily: 'Montserrat'
-                                          ),),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.fromLTRB(24, 6, 0, 0),
-                        child:
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                        Container(
-                          child:  Text("Курьер приедет за 10-20 мин.",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: 'Montserrat'
-                              ),
-                          ),
-                        ),
-                        Container(
-                          child:Text("Режим работы: с 08 до 21",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Montserrat'
-                              ),),
-                        ),
-                        ],),),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(14, 8, 14, 0),
-                        child:Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text("Условия",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Montserrat'
-                        ),),
-                        Text("Корзина",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Montserrat'
-                          ),),
-                        ],),),
-                            Container(
-                              margin: const EdgeInsets.fromLTRB(12, 6, 12, 0),
-                              width: MediaQuery.of(context).size.width,
-                              child: MaterialButton(onPressed: () { Navigator.pop(context); },
-                                height: 60,
-                                elevation: 0,
-                                hoverElevation: 0,
-                                focusElevation: 0,
-                                highlightElevation: 0,
-                                color: Color.fromARGB(255, 29, 31, 32),
-                                shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(10.0)),
-                                child: Text("Информация о магазинчике",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400,
-                                  ),),
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.fromLTRB(12, 6, 12, 0),
-                              width: MediaQuery.of(context).size.width,
-                              child: MaterialButton(onPressed: () { Navigator.pop(context); },
-                                height: 60,
-                                elevation: 0,
-                                hoverElevation: 0,
-                                focusElevation: 0,
-                                highlightElevation: 0,
-                                color: Color.fromARGB(255, 250, 184, 142),
-                                shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(10.0)),
-                                child: Text("Хорошо",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                    },
-                    height: 50,
-                    elevation: 0,
-                    hoverElevation: 0,
-                    focusElevation: 0,
-                    highlightElevation: 0,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(10.0)),
-                    child: Center(child:Container(alignment: Alignment.center,child:Row(mainAxisAlignment: MainAxisAlignment.center,children: [Image(image: AssetImage('assets/images/velosiped.png'),width: 30,),
-              Container(margin: EdgeInsets.only(left: 14),child:Text("Доставка 99₽ • Ещё 160₽, и будет 59₽",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                      ),),),],),),),
-                  ),
-          Container(
-            margin: const EdgeInsets.fromLTRB(12, 6, 12, 0),
 
-            child: MaterialButton(onPressed: () {  Navigator.push(context, MaterialPageRoute(builder: (context) =>  Korzina())); },
-                height: 60,
-              elevation: 0,
-              hoverElevation: 0,
-              focusElevation: 0,
-              highlightElevation: 0,
-                color: Color.fromARGB(255, 250, 184, 142),
-                shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(10.0)),
-                child: Text("Корзина",
-                    style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                ),),
-              ),
-          ),
-              ],
-            ),
-
-            )
 
           ],
         ),

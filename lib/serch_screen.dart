@@ -17,17 +17,17 @@ import 'package:http/http.dart' as http;
 
 const kBgColor = Color(0xFF1604E2);
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({Key? key}) : super(key: key);
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 
 
 
 
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SearchScreenState extends State<SearchScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 
@@ -66,14 +66,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-         ListTile(
-         onTap: () async {
-          final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => AccountScreen()));
-        },
-        leading: const Icon(Icons.account_circle, size: 18,),
-        title:  Text('account'.tr().toString(), style: TextStyle(fontSize: 14),),
-        trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 16,),
-      ),
+            ListTile(
+              onTap: () async {
+                final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => AccountScreen()));
+              },
+              leading: const Icon(Icons.account_circle, size: 18,),
+              title:  Text('account'.tr().toString(), style: TextStyle(fontSize: 14),),
+              trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 16,),
+            ),
             ListTile(
               onTap: () async {
                 final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => ChangeLanguage()));
@@ -115,115 +115,60 @@ class _HomeScreenState extends State<HomeScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color.fromARGB(255, 255,255,255),
-                  Color.fromARGB(255, 255,255,255)
+                  Color(0xffF5F6F7),
+                  Color(0xffF5F6F7)
                 ],
               )),
           child:
-        ListView(
-          children: [
-            SizedBox(
-              height: size.height * 0.2,
-              child: Column(
-                children: [
-                  /// header action icons
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
                   Container(
-                    padding: const EdgeInsets.fromLTRB(18, 20, 18, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-
-                        Row(
-                          children: const [
-                            Image(image: AssetImage('assets/images/logocolor.png'),width: 100),
-                          ],
-                        ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Фонвизинская 18',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Montserrat'
-                    ),
-                  ),Text(
-                    'Доставка 15 минут',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color: Colors.black38,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Montserrat',
-
-                    ),
-                  ),
-                        ],
-              ),
-                        Transform(
-                          alignment: Alignment.center,
-                          transform: Matrix4.rotationY(math.pi),
-                          child: InkWell(
-                            onTap: () {
-                              _scaffoldKey.currentState?.openEndDrawer();
-                            },
-                            child: const Icon(
-                              Icons.segment,
-                              color: Colors.black,
-                              size: 26,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(18, 20, 18, 0),
-                    padding: const EdgeInsets.only(left: 15, right: 15),
-                    height: 44,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 244, 244, 246),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextFormField(
+                    width: size.width,
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40)),color: Colors.white),
+                    child:
+                    Row(mainAxisSize: MainAxisSize.max, crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container( height: 50, width: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Color(0xffF5F6F7)), child: IconButton(onPressed: (){Navigator.pop(context);}, padding: EdgeInsets.all(0),  icon:  Icon(Icons.arrow_back_rounded, color: Colors.black,)),),
+                    SizedBox(width: 12,),
+                          Container(padding: EdgeInsets.only(left: 20, right: 20), width: size.width-102, height: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40)),color: Color(0xffF5F6F7)), child:
+                    TextFormField(
                       controller: _searchLanguageController,
                       onChanged: _loadSearchedLanguages,
-                      cursorColor: Colors.grey,
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                       decoration: InputDecoration(
-                        border: InputBorder.none,
-                        icon: Icon(Icons.search, color: Colors.grey.shade400,),
+                        icon: Icon(Icons.search, color: Colors.black38),
                         hintText: 'search'.tr().toString(),
-                        hintStyle: TextStyle(color: Colors.grey.shade400, fontWeight: FontWeight.bold),
-                        suffixIcon: _searchLanguageController.text.isNotEmpty ? IconButton(icon: const Icon(Icons.clear), onPressed: _clearSearch,) : null,
+                        border: InputBorder.none,
+                        hintStyle: TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
+                        contentPadding: EdgeInsets.symmetric(vertical: 10), // Убираем смещение по вертикали
+                        suffixIcon: _searchLanguageController.text.isNotEmpty
+                            ? IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: _clearSearch,
+                        )
+                            : null,
                       ),
-                    ),
+                    )),
+                        ],),
                   ),
 
-                ],
-              ),
-            ),
-            Expanded(
-                child:  Container(
-                  height: size.height-40,
-                  margin: const EdgeInsets.fromLTRB(18, 10, 18, 0),
-                  child: _loadGridView(),
-                )
-            ),
-          Container(
-            height: 40,
-            child:  Material(
-              color: Color.fromARGB(255, 214, 114, 238),
-              borderRadius: BorderRadius.circular(12),
-            )
-          ),
 
-          ],
+
+              SizedBox(height: 12,),
+              Expanded(
+                  child:  Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),color: Colors.white),
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    child: _loadGridView(),
+                  )
+              ),
+
+
+            ],
+          ),
         ),
-      ),
 
       ),
     );
@@ -255,49 +200,51 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _loadGridView() {
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         mainAxisExtent: 170.0,
         crossAxisSpacing: 20,
         mainAxisSpacing: 10,
       ),
       children: List.generate(_searchedLangData.length, (idx) {
         return Material(
-          borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(255, 244, 244, 246),
+          borderRadius: BorderRadius.circular(20),
+          color: Color(0xffF5F6F7),
           child: InkWell(
             splashColor: Colors.redAccent,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
             onTap: () async {
               Navigator.push(context, MaterialPageRoute(builder: (context) =>  TovarScreen(vths:_langData[idx]['id'].toString(), sdzsdz: _langData[idx]['name'].toString(),)));
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-            Container(
-              alignment: Alignment.topLeft,
-              margin: const EdgeInsets.only(left: 10,top: 6),
-              child:Text(
-                  _langData[idx]['name'],
-                  textAlign: TextAlign.start,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontFamily: "Montserrat",
-                    fontWeight: FontWeight.w600,
+                Container(
+                  alignment: Alignment.topLeft,
+                  margin: const EdgeInsets.only(left: 10,top: 6),
+                  child:Text(
+                    _langData[idx]['name'],
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontFamily: "Montserrat",
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-            ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child:SizedBox(
-                  width: 110,
-                  height: 110,
-                  child: CachedNetworkImage(
-                    imageUrl: _searchedLangData[idx]['img'],
+                Expanded(child: Container()),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child:SizedBox(
+                    width: 110,
+                    height: 110,
+                    child: CachedNetworkImage(
+                      imageUrl: _searchedLangData[idx]['img'],
+                    ),
                   ),
                 ),
-            ),
+                Expanded(child: Container()),
               ],
             ),
           ),

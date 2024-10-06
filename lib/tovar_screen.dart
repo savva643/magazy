@@ -181,7 +181,7 @@ class _TovarScreenState extends State<TovarScreen> {
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisExtent: 210.0,
+        mainAxisExtent: 218.0,
         crossAxisSpacing: 20,
         mainAxisSpacing: 10,
       ),
