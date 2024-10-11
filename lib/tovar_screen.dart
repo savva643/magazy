@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:magazy/change_language.dart';
 import 'package:magazy/account_sccreen.dart';
 import 'package:magazy/abotapp_screen.dart';
+import 'package:magazy/serch_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -79,66 +80,39 @@ class _TovarScreenState extends State<TovarScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color.fromARGB(255, 255,255,255),
-                  Color.fromARGB(255, 255,255,255)
+                  Color(0xffF5F6F7),
+                  Color(0xffF5F6F7)
                 ],
               )),
           child:
-        ListView(
+        Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
-            SizedBox(
-              height: size.height * 0.12,
-              child: Column(
-                children: [
-                  /// header action icons
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(18, 20, 18, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 80,
-                          height: 40,
-                          child:
-                          MaterialButton(onPressed: () { Navigator.pop(context); },
-                            height: 40,
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(40.0)),
-                            child: Image(image: AssetImage('assets/images/Arrow5.png'),width: 40),
-                          ),),
-
-          Text(
-            namik,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Montserrat'
-            ),
-          ),
-                        SizedBox(
-                          width: 40,
-                          height: 40,
-                          child:
-                        MaterialButton(onPressed: () {  },
-                          height: 40,
-
-                            color: Color.fromARGB(255, 0, 0, 0),
-                          shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(40.0)),
-                            child: Icon(Icons.search_rounded,color: Colors.white),
-                            ),),
-                      ],
-                    ),
-                  ),
-
-                ],
-              ),
-            ),
+          Container(
+          width: size.width,
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+          decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40)),color: Colors.white),
+          child:
+          Row(mainAxisSize: MainAxisSize.max, crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container( height: 50, width: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Color(0xffF5F6F7)), child: IconButton(onPressed: (){Navigator.pop(context);}, padding: EdgeInsets.all(0),  icon:  Icon(Icons.arrow_back_rounded, color: Colors.black,)),),
+              SizedBox(width: 12,),
+              Text(namik,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Montserrat'
+                ),),
+              SizedBox(width: 12,),
+              Container( height: 50, width: 50, decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Color(0xffF5F6F7)), child: IconButton(onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen())); }, padding: EdgeInsets.all(0),  icon:  Icon(Icons.search, color: Colors.black,)),)
+            ],),
+        ),
+            SizedBox(height: 12,),
             Expanded(
                 child:  Container(
-                  height: size.height,
-                  margin: const EdgeInsets.fromLTRB(18, 0, 18, 0),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),color: Colors.white),
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: _loadGridView(),
                 )
             ),
@@ -181,17 +155,17 @@ class _TovarScreenState extends State<TovarScreen> {
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisExtent: 218.0,
+        mainAxisExtent: 246.0,
         crossAxisSpacing: 20,
         mainAxisSpacing: 10,
       ),
       children: List.generate(_searchedLangData.length, (idx) {
         return Material(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           color: Color.fromARGB(255, 244, 244, 246),
           child: InkWell(
             splashColor: Colors.redAccent,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
             onTap: () async {
               showModalBottomSheet(
                 context: context,
@@ -309,52 +283,65 @@ class _TovarScreenState extends State<TovarScreen> {
 
             },
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
-            Container(
-              alignment: Alignment.topLeft,
-              margin: const EdgeInsets.only(left: 10,top: 6),
-              child:Text(
-                  _langData[idx]['name'],
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontFamily: "Montserrat",
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-            ),
-            Container(
-              alignment: Alignment.bottomCenter,
+            Stack(alignment: Alignment.topRight,
+              children: [Container(alignment: Alignment.bottomCenter,
               child:SizedBox(
-                  width: 110,
-                  height: 110,
-                  child: CachedNetworkImage(
-                    imageUrl: _searchedLangData[idx]['img'],
+                width: 180,
+                height: 180,
+                child: CachedNetworkImage(
+                  imageUrl: _searchedLangData[idx]['img'],
+                ),
+              ),
+            ),
+              Container(
+margin: EdgeInsets.all(6),
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(),
+                child:MaterialButton(onPressed: () { },
+                  height: 40,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(40.0)),
+                  child: Text("+", style: TextStyle(fontSize: 22,
+                    fontFamily: "Montserrat",
+                    fontWeight: FontWeight.w600,),),
+                ),)
+            ],
+            ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  margin: const EdgeInsets.only(left: 10,top: 6),
+                  child:Text(
+                    _langData[idx]['cell'].toString()+"₽",
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontFamily: "Montserrat",
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-            ),
-            Container(
-              height: 44,
-              width: 310,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    )
-                  ]
-              ),
-              child:MaterialButton(onPressed: () { Navigator.pop(context); },
-                  height: 50,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(10.0)),
-                  child: Text("В корзину"),
-                ),),
+                Container(
+                  alignment: Alignment.topLeft,
+                  margin: const EdgeInsets.only(left: 10,bottom: 6),
+                  child:Text(
+                    _langData[idx]['name'],
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontFamily: "Montserrat",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

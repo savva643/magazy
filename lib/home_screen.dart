@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   SizedBox(height: 12,),
                   Container(
-                    decoration: BoxDecoration(borderRadius: BorderRadius.all( Radius.circular(40)),color: Colors.white),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40)),color: Colors.white),
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                     height: 70,
                     width: double.infinity,
@@ -227,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
             borderRadius: BorderRadius.circular(25),
             child: ListTile(
               onTap: () async {
-
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Korzina()));
               },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25) ),
               subtitle: Text(""),
