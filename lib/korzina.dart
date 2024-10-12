@@ -201,11 +201,11 @@ class _KorzinaState extends State<Korzina> {
         onDismissed: null,
           
       child: Container(
-            child: Material(
+        child: Material(
 
-              color: Color(0xffF5F6F7),
-              borderRadius: BorderRadius.circular(40),
-              child: ListTile(
+          color: Color(0xffF5F6F7),
+          borderRadius: BorderRadius.circular(40),
+          child: ListTile(
                 contentPadding: EdgeInsets.only(
                     left: 0, right: 0, bottom: 10, top: 10),
                 shape: RoundedRectangleBorder(
